@@ -81,6 +81,9 @@ class lcl_controller implementation.
         call transformation z_nmt_trans_test
             source xml lv_xml result xml lv_xml_result.
 
+*        call transformation z_nmt_trans_test
+*            source xml lv_xml lv_xml_result result xml lv_xml_result.
+
 **********************************************************************
 * jetzt werden die Tags ermittelt
 **********************************************************************
