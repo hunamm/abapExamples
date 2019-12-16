@@ -22,7 +22,7 @@ data: lr_calculator type ref to zcl_pp_vi_limit_calculator,
       lr_alv        type ref to cl_salv_table.
 
 data: lt_ic_interim_result type zcl_pp_vi_limit_calculator=>tyt_ic_calc,
-      lt_ic_group_result   type zcl_pp_vi_limit_calculator=>tyt_cluster_ic_group_calc,
+      lt_ic_group_result   type zcl_pp_vi_limit_calculator=>tyt_icg_calc_result,
       lt_list              type tyt_ic_interim,
       ls_list              type ty_ic_interim.
 
