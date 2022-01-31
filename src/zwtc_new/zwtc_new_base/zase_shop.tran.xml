@@ -12,6 +12,10 @@
     <TCODE>ZASE_SHOP</TCODE>
     <S_WIN32>X</S_WIN32>
    </TSTCC>
+   <TSTCT>
+    <SPRSL>D</SPRSL>
+    <TCODE>ZASE_SHOP</TCODE>
+   </TSTCT>
    <I18N_TPOOL>
     <TSTCT>
      <SPRSL>E</SPRSL>

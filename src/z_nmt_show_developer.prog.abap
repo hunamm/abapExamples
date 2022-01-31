@@ -30,13 +30,19 @@ data: lc_locked type char1 value 'L'.
 
 "--------------------------------------------------
 
-select uname from devaccess into table @data(lt_user).
+tables: usr01.
+
+select-options: s_user for usr01-bname.
+
+select uname from devaccess into table @data(lt_user)
+    where uname in @s_user.
 
 loop at lt_user into data(ls_user).
   clear ls_developer.
 
   ls_developer-uname = ls_user-uname.
 
+  clear lt_return.
   call function 'BAPI_USER_GET_DETAIL'
     exporting
       username = ls_user-uname
@@ -44,6 +50,18 @@ loop at lt_user into data(ls_user).
       address  = ls_address
     tables
       return   = lt_return.
+
+  loop at lt_return assigning field-symbol(<ls_return>)
+      where type ca 'AEX'.
+
+    exit.
+
+  endloop.
+
+  if sy-subrc = 0.
+    continue.
+
+  endif.
 
   ls_developer-email = ls_address-e_mail.
   ls_developer-title = ls_address-title_p.
@@ -71,12 +89,14 @@ loop at lt_user into data(ls_user).
       user_name_not_exist = 1
       others              = 2.
 
-  if ls_lockstate-local_lock = lc_locked or
-     ls_lockstate-glob_lock = lc_locked.
-
-    ls_developer-lock = abap_true.
+  if sy-subrc ne 0.
+    continue.
 
   endif.
+
+  ls_developer-lock = cond #( when ls_lockstate-local_lock = lc_locked or
+                                   ls_lockstate-glob_lock = lc_locked
+                              then abap_true ).
 
   append ls_developer to lt_developer.
 

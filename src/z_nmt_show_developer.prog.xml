@@ -16,6 +16,13 @@
      <ENTRY>Entwickler im System anzeigen</ENTRY>
      <LENGTH>29</LENGTH>
     </item>
+    <item>
+     <ID>S</ID>
+     <KEY>S_USER</KEY>
+     <ENTRY>.</ENTRY>
+     <LENGTH>9</LENGTH>
+     <SPLIT>D</SPLIT>
+    </item>
    </TPOOL>
   </asx:values>
  </asx:abap>
